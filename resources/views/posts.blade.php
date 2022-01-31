@@ -1,22 +1,25 @@
-<!DOCTYPE html>
-<link rel="stylesheet" href="/app.css">
-<link rel="javascript" href="/app.js">
-<title>Larvel 8 Up and running</title>
+@extends('layout')
 
-<body>
+@section('banner')
 
-    @foreach($posts as $post)
+<h1> banner </h1>
 
-    <article class="{{ $loop->even ? 'mb-4' : '' }}">
+@endsection
 
-        <a href="/post/{{ $post->slug}}">
+@section('content')
 
-        <h1>{{ $post->title }}</h1></a>
+@foreach($posts as $post)
 
-        <div>{!! $post->body !!}</div>
+<article class="{{ $loop->even ? 'mb-4' : '' }}">
 
-    </article>
+    <a href="/post/{{ $post->slug}}">
 
-        @endforeach;
+    <h1>{{ $post->title }}</h1></a>
 
-</body>
+    <div>{!! $post->body !!}</div>
+
+</article>
+
+    @endforeach;
+
+@endsection
