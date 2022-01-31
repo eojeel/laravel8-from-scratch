@@ -1,13 +1,4 @@
-@extends('layout')
-
-@section('banner')
-
-<h1> banner </h1>
-
-@endsection
-
-@section('content')
-
+<x-layout>
 @foreach($posts as $post)
 
 <article class="{{ $loop->even ? 'mb-4' : '' }}">
@@ -22,4 +13,4 @@
 
     @endforeach;
 
-@endsection
+</x-layout>

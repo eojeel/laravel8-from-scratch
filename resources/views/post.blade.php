@@ -1,9 +1,6 @@
-@extends('layout')
-
-@section('content')
-
+<x-layout>
 <a href="/"><h1>{{ $post->title }}</h1></a>
 
 <div>{!! $post->body !!}</div>
 
-@endsection
+</x-layout>
