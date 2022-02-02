@@ -5,7 +5,7 @@
 
     <a href="/post/{{ $post->id}}">
 
-    <h1>{{ $post->title }}</h1></a>
+    {!! $post->title !!}</a>
 
     <div>{!! $post->body !!}</div>
 
