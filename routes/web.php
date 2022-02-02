@@ -15,18 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-    $posts = Post::all();
-
     return view('posts', [
-        'posts' => $posts
+        'posts' => Post::all()
     ]);
 });
 
 
-Route::get('post/{post}', function ($slug) {
+Route::get('post/{post}', function ($id) {
     // Find a post by its slug and pass it to a view called "post"
 
     return view('post', [
-        'post' => Post::findOrFail($slug)
+        'post' => Post::findOrFail($id)
     ]);
 });

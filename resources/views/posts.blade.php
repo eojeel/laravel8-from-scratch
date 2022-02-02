@@ -3,7 +3,7 @@
 
 <article class="{{ $loop->even ? 'mb-4' : '' }}">
 
-    <a href="/post/{{ $post->slug}}">
+    <a href="/post/{{ $post->id}}">
 
     <h1>{{ $post->title }}</h1></a>
 
