@@ -9,6 +9,10 @@
 
     <div>{{ $post->excerpt }}</div>
 
+    <p>
+        <a href="#">{{ $post->category->name }}</a>
+    </p>
+
 </article>
 
     @endforeach;
