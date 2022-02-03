@@ -1,4 +1,5 @@
 <x-layout>
+
 @foreach($posts as $post)
 
 <article class="{{ $loop->even ? 'mb-4' : '' }}">
@@ -10,11 +11,11 @@
     <div>{{ $post->excerpt }}</div>
 
     <p>
-        <a href="#">{{ $post->category->name }}</a>
+        <a href="/categories/{{ $post->category->slug }}">{{ $post->category->name }}</a>
     </p>
 
 </article>
 
-    @endforeach;
+    @endforeach
 
 </x-layout>
