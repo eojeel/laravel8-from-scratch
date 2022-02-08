@@ -1,5 +1,6 @@
-<x-layout>
 
+<x-layout>
+<?php /*
 @foreach($posts as $post)
 
 <article class="{{ $loop->even ? 'mb-4' : '' }}">
@@ -17,30 +18,22 @@
     </p>
 
 </article>
-
     @endforeach
-
+*/ ?>
 
         @include('_posts-header');
 
         <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
 
-            <x-post-featured-card/>
+            @if ($posts->count())
 
-            <div class="lg:grid lg:grid-cols-2">
+            <x-posts-grid :posts="$posts"/>
 
-                <x-post-card />
-                <x-post-card />
+            @else
+                <p style="text-center">No posts yet</p>
+            @endif
 
-            </div>
 
-            <div class="lg:grid lg:grid-cols-3">
-
-                <x-post-card />
-                <x-post-card />
-                <x-post-card />
-
-            </div>
         </main>
 
 </x-layout>
