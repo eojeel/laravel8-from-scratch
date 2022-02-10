@@ -18,6 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
+    $posts = Post::latest();
+
+    if (request('search')) {
+        $req = '%'. request('search') .'%';
+        $posts->where('title', 'like', $req)
+        ->orWhere('body', 'like', $req);
+    }
+
     // LOGGING SQL
     /*
     DB::listen(function ($query){
@@ -27,9 +35,8 @@ Route::get('/', function () {
     clockwork app and dev tools.
     */
 
-
     return view('posts', [
-        'categories' => Category::all(),
+        'categories' => $posts->get(),
         'posts' => Post::latest('created_at')->get()
     ]);
 })->name('home');
