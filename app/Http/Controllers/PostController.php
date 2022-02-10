@@ -21,14 +21,14 @@ class PostController extends Controller
 
         return view('posts', [
             'categories' => Category::all(),
+            'currentCategory' => Category::firstWhere('slug', request('cateogry')),
             //'posts' => $this->getPost(),
-            'posts' => Post::latest()->filter(request(['search']))->get()
+            'posts' => Post::latest()->filter(request(['search','category']))->get()
         ]);
     }
 
     public function show(Post $post)
     {
-        // Find a post by its slug and pass it to a view called "post"
         return view('post', [
             'post' => $post
         ]);
@@ -37,6 +37,7 @@ class PostController extends Controller
     public function getPost ()
     {
         return Post::latest()->filter()->get();
+
         /*
         $posts = Post::latest();
 
