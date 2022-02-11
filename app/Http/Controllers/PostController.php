@@ -19,9 +19,9 @@ class PostController extends Controller
         clockwork app and dev tools.
         */
 
-        return view('posts', [
-            'categories' => Category::all(),
-            'currentCategory' => Category::firstWhere('slug', request('cateogry')),
+        return view('posts.index', [
+            //'categories' => Category::all(),
+            //'currentCategory' => Category::firstWhere('slug', request('cateogry')),
             //'posts' => $this->getPost(),
             'posts' => Post::latest()->filter(request(['search','category']))->get()
         ]);
@@ -29,7 +29,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post', [
+        return view('posts.show', [
             'post' => $post
         ]);
     }
