@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Models\Post;
 
 class PostController extends Controller
@@ -23,7 +21,7 @@ class PostController extends Controller
             //'categories' => Category::all(),
             //'currentCategory' => Category::firstWhere('slug', request('cateogry')),
             //'posts' => $this->getPost(),
-            'posts' => Post::latest()->filter(request(['search','category']))->get()
+            'posts' => Post::latest()->filter(request(['search','category','author']))->get()
         ]);
     }
 
