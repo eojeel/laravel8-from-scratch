@@ -1,8 +1,6 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,10 +15,10 @@ Route::get('post/{post}', [PostController::class, 'show']);
 //    ]);
 //})->name('category');
 
-Route::get('authors/{author:username}', function (User $author) {
-    return view('posts.index', [
-        'posts' => $author->posts,
-        //'categories' => Category::all(),
-    ]);
-});
+//Route::get('authors/{author:username}', function (User $author) {
+//    return view('posts.index', [
+//        'posts' => $author->posts,
+//        //'categories' => Category::all(),
+//    ]);
+//});
 
