@@ -14,6 +14,7 @@
                     type="text"
                     name="name"
                     id="name"
+                    value="{{ old('name') }}"
                     required>
 
                     @error('name')
@@ -32,6 +33,7 @@
                 type="text"
                 name="username"
                 id="username"
+                value="{{ old('username') }}"
                 required>
 
                 @error('username')
@@ -50,7 +52,14 @@
                     type="email"
                     name="email"
                     id="email"
+                    value="{{ old('email') }}"
                     required>
+
+                    @error('email')
+                    <p class="text-red-500 text-xs italic">
+                        {{ $message}}
+                    </p>
+                    @enderror
             </div>
 
             <div class="mb-6">
@@ -75,6 +84,16 @@
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                     Register
                 </button>
+
+
+                @if ($errors->any())
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-red-500 text-xl">{{ $error }}</li>
+                    @endforeach
+                    </ul>
+                @endif
+
             </form>
         </main>
     </section>
