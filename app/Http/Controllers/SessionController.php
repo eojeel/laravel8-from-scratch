@@ -30,13 +30,13 @@ class SessionController extends Controller
 
         if(auth()->attempt($attributes))
         {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
+
             session()->regenerate();
             return redirect('/')->with('success', 'Welcome Back!');
         }
-
-        throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect.'],
-        ]);
 
         //return back()
         //->withInput()
