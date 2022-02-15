@@ -70,8 +70,9 @@
 
 
         <section class="col-span-8 col-start-5 m-10 space-y-4">
+            @auth
             <x-panel>
-                <form method="POST" action="/">
+                <form method="POST" action="/post/{{ $post->slug}}/comments">
                     @csrf
                     <header class="flex items-center">
                         <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}" alt="" width="60" height="60" class="rounded-full">
@@ -88,6 +89,11 @@
                 </form>
             </x-panel>
         </section>
+        @else
+        <p class="font-semibold">
+            <a class="hover:underline" href="/register">Register</a> Or <a class="hover:underline" href="/login">Log in to Comment</a>
+        </p>
+        @endauth
 
         <section class="col-span-8 col-start-5 m-10 space-y-4">
             @foreach ($post->comments as $comment)
