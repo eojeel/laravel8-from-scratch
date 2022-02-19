@@ -60,6 +60,7 @@ class PostController extends Controller
     {
         $attributes = request()->validate([
             'title' => ['required', 'min:3'],
+            'thumbnail' => ['required', 'image'],
             'body' => ['required', 'min:3'],
             'slug' => ['required', 'min:3', Rule::unique('posts', 'slug')],
             'excerpt' => ['required', 'min:3'],
@@ -67,6 +68,7 @@ class PostController extends Controller
         ]);
 
         $attributes['user_id'] = auth()->id();
+        $attributes['thunbnail'] = request()->file('thumbnail')->store('thumbnails');
 
         Post::create($attributes);
 
