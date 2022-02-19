@@ -11,7 +11,7 @@
             {{ $posts->links() }}
 
             @else
-                <p style="text-center">No posts yet</p>
+                <p class="text-center">No posts yet</p>
             @endif
 
         </main>

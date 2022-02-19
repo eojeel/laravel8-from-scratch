@@ -23,7 +23,7 @@ class PostController extends Controller
             //'posts' => $this->getPost(),
             'posts' => Post::latest()->filter(
                 request(['search','category','author'])
-                )->simplePaginate(6)->withQueryString()
+            )->simplePaginate(6)->withQueryString()
         ]);
     }
 
@@ -34,7 +34,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function getPost ()
+    public function getPost()
     {
         return Post::latest()->filter()->get();
 
@@ -48,7 +48,10 @@ class PostController extends Controller
 
         return $posts->get();
         */
-
     }
 
+    public function create()
+    {
+        return view('posts.create');
+    }
 }

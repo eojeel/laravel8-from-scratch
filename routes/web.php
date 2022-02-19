@@ -22,6 +22,8 @@ Route::post('logout', [SessionController::class, 'destory'])->middleware('auth')
 
 Route::post('newsletter', NewsLetterController::class);
 
+Route::get('admin/post/create', [PostController::class, 'create'])->middleware('admin');
+
 
 
 //Route::get('categories/{category:slug}', function (Category $category) {
