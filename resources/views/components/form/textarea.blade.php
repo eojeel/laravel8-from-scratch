@@ -5,7 +5,7 @@
         Exceprt
     </label>
 
-    <textarea class="border border-gray-400 p-2 w-full" type="text" name="{{ $name }}" id="{{ $name }}" required>
+    <textarea class="border border-gray-200 rounded p-2 w-full" type="text" name="{{ $name }}" id="{{ $name }}" required>
     {{ old($name) }}
     </textarea>
 

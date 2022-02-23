@@ -23,11 +23,21 @@
 
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
-                <a href="/register" class="text-xs font-bold uppercase">Welcome {{ auth()->user()->name }} </a>
-                <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
+                <x-dropdown>
+                    <x-slot name="trigger">
+                <button class="text-xs font-bold uppercase">Welcome {{ auth()->user()->name }} </button>
+                    </x-slot>
+                    <x-dropdown-item href="/">Dashboard</x-dropdown-item>
+                    <x-dropdown-item href="admin/post/create" :active="request()->is('admin/post/create')">New Post</x-dropdown-item>
+                    <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Logout</x-dropdown-item>
+
+                    <form id="logout-form" method="POST" action="/logout" class="hidden">
                     @csrf
-                    <button type="submit" class="text-xs font-bold uppercase">Logout</button>
-                </form>
+                    </form>
+
+                </x-dropdown>
+
+
                 @else
                 <a href="/login" class="text-xs font-bold uppercase">Login</a>
                 <a href="/register" class="ml-3 text-xs font-bold uppercase">Register</a>
@@ -65,9 +75,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
-                            Subscribe
-                        </button>
+                        <x-submit-button>Subscribe</x-submit-button>
                     </form>
                 </div>
             </div>
