@@ -16,8 +16,9 @@ class AdminPostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('admin.posts.edit', ['post' => $post]);
+        return view('admin.post.edit', ['post' => $post]);
     }
+
     public function create()
     {
         return view('admin.post.create');

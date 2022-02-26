@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Validation\ValidationException;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-
 
 class SessionController extends Controller
 {
