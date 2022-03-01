@@ -23,9 +23,6 @@ Route::post('logout', [SessionController::class, 'destory'])->middleware('auth')
 Route::post('newsletter', NewsLetterController::class);
 
 //Admin
-Route::get('admin/post/create', [AdminPostController::class, 'create'])->middleware('admin');
-Route::post('admin/post', [AdminPostController::class, 'store'])->middleware('admin');
-Route::get('admin/post', [AdminPostController::class, 'index'])->middleware('admin');
-Route::get('admin/post/{post}/edit', [AdminPostController::class, 'edit'])->middleware('admin');
-Route::patch('admin/post/{post}', [AdminPostController::class, 'update'])->middleware('admin');
-Route::delete('admin/post/{post}', [AdminPostController::class, 'destory'])->middleware('admin');
+Route::middleware('can:admin')->group(function () {
+    Route::resource('admin/posts', AdminPostController::class)->except('show');
+});

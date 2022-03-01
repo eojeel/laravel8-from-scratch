@@ -51,7 +51,9 @@ class AdminPostController extends Controller
 
     public function validatePost(Post $post = null): array
     {
-        $post ??= new Post();
+        if (is_null($post)) {
+            $post = new Post();
+        }
 
         $attributes = request()->validate([
             'title' => 'required',
