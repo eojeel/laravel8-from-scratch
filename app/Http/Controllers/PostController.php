@@ -38,7 +38,6 @@ class PostController extends Controller
     public function getPost()
     {
         return Post::latest()->filter()->get();
-
         /*
         $posts = Post::latest();
 

@@ -26,15 +26,7 @@ class AdminPostController extends Controller
 
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => ['required', 'min:3'],
-            'thumbnail' => ['required', 'image'],
-            'body' => ['required', 'min:3'],
-            'slug' => ['required', 'min:3', Rule::unique('posts', 'slug')],
-            'excerpt' => ['required', 'min:3'],
-            'category' => ['required', 'min:3', Rule::exists('category', 'id')],
-        ]);
-
+        $attributes = $this->validatePost();
         $attributes['user_id'] = auth()->id();
         $attributes['thunbnail'] = request()->file('thumbnail')->store('thumbnails');
 
@@ -45,25 +37,32 @@ class AdminPostController extends Controller
 
     public function update(Post $post)
     {
-        $attributes = request()->validate([
-            'title' => ['required', 'min:3'],
-            'thumbnail' => ['required', 'image'],
-            'body' => ['required', 'min:3'],
-            'slug' => ['required', 'min:3', Rule::unique('posts', 'slug')->ignore($post->id)],
-            'excerpt' => ['required', 'min:3'],
-            'category' => ['required', 'min:3', Rule::exists('category', 'id')],
-        ]);
+        $attributes = $this->validatePost($post);
 
         $attributes['user_id'] = auth()->id();
-        if(isset($attributes['thumbnail']))
-        {
+        if (isset($attributes['thumbnail'])) {
             $attributes['thunbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
 
         $post->update($attributes);
 
         return  back()->with('success', 'Post updated successfully');
+    }
 
+    public function validatePost(Post $post = null): array
+    {
+        $post ??= new Post();
+
+        $attributes = request()->validate([
+            'title' => 'required',
+            'thumbnail' => $post->exists ? ['image'] : ['required', 'image'],
+            'body' => ['required', 'min:3'],
+            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
+            'excerpt' => ['required', 'min:3'],
+            'category' => ['required', 'min:3', Rule::exists('category', 'id')],
+        ]);
+
+        return $attributes;
     }
 
     public function destory(Post $post)
